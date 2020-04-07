@@ -4,6 +4,7 @@ import com.lagou.edu.dao.AccountDao;
 import com.lagou.edu.pojo.Account;
 import com.lagou.edu.service.TransferService;
 import com.lagou.edu.utils.ConnectionUtils;
+import com.lagou.edu.utils.MyAutowired;
 import com.lagou.edu.utils.TransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,8 +23,7 @@ public class TransferServiceImpl implements TransferService {
 
     // 最佳状态
     // @Autowired 按照类型注入 ,如果按照类型无法唯一锁定对象，可以结合@Qualifier指定具体的id
-    @Autowired
-    @Qualifier("accountDao")
+    @MyAutowired
     private AccountDao accountDao;
 
 

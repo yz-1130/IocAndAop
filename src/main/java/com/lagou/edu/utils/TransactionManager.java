@@ -18,9 +18,6 @@ public class TransactionManager {
     private ConnectionUtils connectionUtils;
 
 
-
-
-
     // 开启手动事务控制
     public void beginTransaction() throws SQLException {
         connectionUtils.getCurrentThreadConn().setAutoCommit(false);

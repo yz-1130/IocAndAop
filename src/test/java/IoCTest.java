@@ -1,5 +1,7 @@
 import com.lagou.edu.SpringConfig;
 import com.lagou.edu.dao.AccountDao;
+import com.lagou.edu.pojo.Account;
+import com.lagou.edu.utils.MyReflect;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -22,6 +24,30 @@ public class IoCTest {
 
         System.out.println(accountDao);
 
+
+
+    }
+
+    @Test
+    public void testMyAutoWired() throws Exception {
+        AccountDao bMybean=new AccountDao() {
+            @Override
+            public Account queryAccountByCardNo(String cardNo) throws Exception {
+                return new Account();
+            }
+
+            @Override
+            public int updateAccountByCardNo(Account account) throws Exception {
+                return 0;
+            }
+        };
+        //手动注入
+        boolean b= MyReflect.setObjByFieldAnno(bMybean);
+        if (b){
+            Account account = bMybean.queryAccountByCardNo("6029621011001");
+        }else{
+            System.out.println("getObjByFieldAnno   不正确");
+        }
 
 
     }
